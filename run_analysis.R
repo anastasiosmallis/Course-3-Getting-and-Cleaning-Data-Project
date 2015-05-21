@@ -70,7 +70,10 @@ X_train_and_test <- cbind(X_train_and_test[,1], X_act_labels, X_train_and_test[,
 rm(activity_labels);rm(X_act_labels)
 
 colnames(X_train_and_test)[1] <- "Subject"
-colnames(X_train_and_test)[2] <- "Activity Label"
+colnames(X_train_and_test)[2] <- "Activity"
 
 #### Tidy data set with the average of each variable for each activity and each subject ####
+library("plyr")
+summary <- ddply(X_train_and_test, .(Subject, Activity), colwise(mean))
 
+write.table(summary, "summary_table.txt", row.name=FALSE)
