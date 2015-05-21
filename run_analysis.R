@@ -22,31 +22,31 @@ X_test <- read.table("UCI HAR Dataset/test/X_test.txt")
 Y_test <- read.table("UCI HAR Dataset/test/Y_test.txt")
 subject_test <- read.table("UCI HAR Dataset/test/subject_test.txt")
 X_test <- cbind(subject_test, Y_test, X_test)
-rm(subject_test);rm(Y_test)
+rm(subject_test)
 
 # read train data
 X_train <- read.table("UCI HAR Dataset/train/X_train.txt")
 Y_train <- read.table("UCI HAR Dataset/train/Y_train.txt")
 subject_train <- read.table("UCI HAR Dataset/train/subject_train.txt")
 X_train <- cbind(subject_train, Y_train, X_train)
-rm(subject_train);rm(X_test)
+rm(subject_train)
 
 # read features
 features <- read.table("UCI HAR Dataset/features.txt")
 features <- as.character(features[,2])
 features <- c("Subject", "Activity Label", features)
 
-# use features as column names
+#### label the data set with descriptive variable names ####
 colnames(X_test) <- features
 colnames(X_train) <- features
 
-#### Merge Data ####
+#### Merge the training and the test sets to create one data set ####
 X_train_and_test <- rbind(X_train,X_test)
 
 # remove the individual datasets to save memory
-rm(X_test);rm(X_train)
+rm(X_test);rm(X_train);rm(Y_test);rm(Y_train)
 
-#### only keep data of means and standard deviations #### 
+#### Extract only the measurements on the mean and standard deviation for each measurement #### 
 X_train_and_test<- X_train_and_test[,grepl("mean()", features, fixed = T)|
                                       grepl("std()", features, fixed = T)|
                                       grepl("Activity Label", features, fixed = T)|
@@ -55,16 +55,22 @@ X_train_and_test<- X_train_and_test[,grepl("mean()", features, fixed = T)|
 # remove features to save memory
 rm(features)
 
-# replace numbers with names of activity labels
+#### Use descriptive activity names ####
 activity_labels <- read.table("UCI HAR Dataset/activity_labels.txt")
 
 X_act_labels <- c(rep(".",length(X_train_and_test)))
 
 for (i in 1:length(X_train_and_test[,1])){
-  X_act_labels[i] <- activity_labels[X_train_and_test[i,1],2]
+  X_act_labels[i] <- as.character(activity_labels[X_train_and_test[i,2],2])
 }
 
 X_train_and_test <- X_train_and_test[,-2]
-X_train_and_test <- cbind(X_act_labels, X_train_and_test)
+X_train_and_test <- cbind(X_train_and_test[,1], X_act_labels, X_train_and_test[,-1])
 
-head(X_train_and_test[,1])
+rm(activity_labels);rm(X_act_labels)
+
+colnames(X_train_and_test)[1] <- "Subject"
+colnames(X_train_and_test)[2] <- "Activity Label"
+
+#### Tidy data set with the average of each variable for each activity and each subject ####
+
