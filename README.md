@@ -1,4 +1,4 @@
-# Course-3-Getting-and-Cleaning-Data-Project
+### Course-3-Getting-and-Cleaning-Data-Project
 
 ###### The script in the repository named run_analysis.R works as follows.
 
@@ -13,3 +13,5 @@
 9. Replaces the activity codes with the activity names.
 10. Creates a summary table using the ddply() function of the "plyr" library that shows the average value for each of the variables for each subject and activity.
 11. Saves the summary table, created in the previous step, as a text file in the working directory with the name "summary_table.txt".
+
+*For more details please look at the comments inside the script file.

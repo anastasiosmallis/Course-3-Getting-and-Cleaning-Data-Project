@@ -76,4 +76,4 @@ colnames(X_train_and_test)[2] <- "Activity"
 library("plyr")
 summary <- ddply(X_train_and_test, .(Subject, Activity), colwise(mean))
 
-write.table(summary, "summary_table.txt", row.name=FALSE)
+write.table(summary, "summary_table.txt", row.name=FALSE, sep="\t")
