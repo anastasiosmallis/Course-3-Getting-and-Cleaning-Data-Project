@@ -1,5 +1,10 @@
 ### Course-3-Getting-and-Cleaning-Data-Project
 
+###### The files in this repository are:
++ README.md (list of files in repository and description of how the script works)
++ run_analysis.R (R script that cleans data and outputs a summary)
++ CodeBook.md (deatailed descrption of the data and the output summary)
+
 ###### The script in the repository named run_analysis.R works as follows.
 
 1. Downloads the zip file containing all the data from the given link and stores it into the the working directory.
@@ -15,3 +20,4 @@
 11. Saves the summary table, created in the previous step, as a text file in the working directory with the name "summary_table.txt".
 
 *For more details please look at the comments inside the script file.
+*For more detailed information about the data itself and the output, please refer to the CodeBook.md file.
