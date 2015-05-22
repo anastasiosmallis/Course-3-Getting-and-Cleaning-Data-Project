@@ -127,6 +127,9 @@ The complete list of variables is:
 64. fBodyBodyGyroMag-std()
 65. fBodyBodyGyroJerkMag-mean()
 66. fBodyBodyGyroJerkMag-std()
-So because there are 30 subjects and 6 activities we get in the summary 180 rows, each containing the average of each of the 66 above variables. That is why the output is a 180 by 68 dataset.
+
+
+
+###### So because there are 30 subjects and 6 activities we get in the summary 180 rows, each containing the average of each of the 66 above variables. That is why the output is a 180 by 68 dataset.
 
 
